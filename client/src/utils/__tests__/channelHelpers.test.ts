@@ -4,6 +4,11 @@ import {
   normalizeSubFolderKey,
   formatSubFolderLabel,
   DEFAULT_SUBFOLDER_KEY,
+  GLOBAL_DEFAULT_SENTINEL,
+  ROOT_SENTINEL,
+  isUsingDefaultSubfolder,
+  isExplicitlyNoSubfolder,
+  isExplicitlyRoot,
 } from '../channelHelpers';
 
 describe('channelHelpers Utility', () => {
@@ -234,6 +239,76 @@ describe('channelHelpers Utility', () => {
   describe('DEFAULT_SUBFOLDER_KEY constant', () => {
     test('has expected value', () => {
       expect(DEFAULT_SUBFOLDER_KEY).toBe('__default__');
+    });
+  });
+
+  describe('formatSubFolderLabel sentinels', () => {
+    test('returns "global default" for the global default sentinel', () => {
+      expect(formatSubFolderLabel(GLOBAL_DEFAULT_SENTINEL)).toBe('global default');
+    });
+  });
+
+  describe('normalizeSubFolderKey sentinels', () => {
+    test('preserves the global default sentinel', () => {
+      expect(normalizeSubFolderKey(GLOBAL_DEFAULT_SENTINEL)).toBe(GLOBAL_DEFAULT_SENTINEL);
+    });
+  });
+
+  describe('isUsingDefaultSubfolder', () => {
+    test('returns true only for the global default sentinel', () => {
+      expect(isUsingDefaultSubfolder(GLOBAL_DEFAULT_SENTINEL)).toBe(true);
+    });
+
+    test('returns false for null', () => {
+      expect(isUsingDefaultSubfolder(null)).toBe(false);
+    });
+
+    test('returns false for an ordinary subfolder name', () => {
+      expect(isUsingDefaultSubfolder('videos')).toBe(false);
+    });
+
+    test('returns false for the root sentinel', () => {
+      expect(isUsingDefaultSubfolder(ROOT_SENTINEL)).toBe(false);
+    });
+  });
+
+  describe('isExplicitlyNoSubfolder', () => {
+    test('returns true for null', () => {
+      expect(isExplicitlyNoSubfolder(null)).toBe(true);
+    });
+
+    test('returns true for undefined', () => {
+      expect(isExplicitlyNoSubfolder(undefined)).toBe(true);
+    });
+
+    test('returns true for empty string', () => {
+      expect(isExplicitlyNoSubfolder('')).toBe(true);
+    });
+
+    test('returns false for an ordinary subfolder name', () => {
+      expect(isExplicitlyNoSubfolder('videos')).toBe(false);
+    });
+
+    test('returns false for the global default sentinel', () => {
+      expect(isExplicitlyNoSubfolder(GLOBAL_DEFAULT_SENTINEL)).toBe(false);
+    });
+  });
+
+  describe('isExplicitlyRoot', () => {
+    test('returns true only for the root sentinel', () => {
+      expect(isExplicitlyRoot(ROOT_SENTINEL)).toBe(true);
+    });
+
+    test('returns false for null', () => {
+      expect(isExplicitlyRoot(null)).toBe(false);
+    });
+
+    test('returns false for an ordinary subfolder name', () => {
+      expect(isExplicitlyRoot('videos')).toBe(false);
+    });
+
+    test('returns false for the global default sentinel', () => {
+      expect(isExplicitlyRoot(GLOBAL_DEFAULT_SENTINEL)).toBe(false);
     });
   });
 
