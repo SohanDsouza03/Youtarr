@@ -21,7 +21,7 @@ Thank you for your interest in contributing to Youtarr! This document will help 
 ### Prerequisites
 
 - **Docker & Docker Compose** - Required for development and testing
-- **Node.js 18+** - For building the application
+- **Node.js 20.19+** - For building the application and running tests (see `engines` in `package.json`; a `.nvmrc` is provided)
 - **Git** - Version control
 - **Bash shell** - Git Bash for Windows users
 
