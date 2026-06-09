@@ -165,6 +165,11 @@ test: add integration tests for download module
 - **Quotes**: Single quotes preferred
 - **Semicolons**: Required
 
+An [`.editorconfig`](.editorconfig) file at the repo root encodes the indentation,
+line-ending, charset, and final-newline rules so most editors apply them
+automatically. Install the EditorConfig plugin for your editor if it is not
+built in.
+
 Code style is automatically checked by pre-commit hooks and CI.
 
 ### Testing Requirements
