@@ -5,7 +5,57 @@ import {
   formatAddedDate,
   formatAddedDateTime,
   formatAddedDateParts,
+  formatFileSize,
+  decodeHtml,
 } from '../formatters';
+
+describe('formatFileSize', () => {
+  test('returns empty string for null', () => {
+    expect(formatFileSize(null)).toBe('');
+  });
+
+  test('returns empty string for undefined', () => {
+    expect(formatFileSize(undefined)).toBe('');
+  });
+
+  test('returns empty string for zero bytes', () => {
+    expect(formatFileSize(0)).toBe('');
+  });
+
+  test('formats sub-gigabyte sizes in whole megabytes', () => {
+    expect(formatFileSize(5 * 1024 * 1024)).toBe('5MB');
+  });
+
+  test('rounds megabytes to a whole number', () => {
+    expect(formatFileSize(Math.round(1.6 * 1024 * 1024))).toBe('2MB');
+  });
+
+  test('formats sizes of one gigabyte or more with one decimal', () => {
+    expect(formatFileSize(2.5 * 1024 * 1024 * 1024)).toBe('2.5GB');
+  });
+
+  test('switches to gigabytes exactly at 1GB', () => {
+    expect(formatFileSize(1024 * 1024 * 1024)).toBe('1.0GB');
+  });
+});
+
+describe('decodeHtml', () => {
+  test('decodes named HTML entities', () => {
+    expect(decodeHtml('Tom &amp; Jerry')).toBe('Tom & Jerry');
+  });
+
+  test('decodes numeric HTML entities', () => {
+    expect(decodeHtml('5 &lt; 10 &gt; 3')).toBe('5 < 10 > 3');
+  });
+
+  test('returns plain text unchanged', () => {
+    expect(decodeHtml('no entities here')).toBe('no entities here');
+  });
+
+  test('returns empty string for empty input', () => {
+    expect(decodeHtml('')).toBe('');
+  });
+});
 
 describe('formatters date helpers', () => {
   describe('parseDate', () => {
