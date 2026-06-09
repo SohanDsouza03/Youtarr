@@ -1,0 +1,71 @@
+name: Bug Report
+description: Report a problem with Youtarr
+title: "[Bug]: "
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to file a bug report. Please search
+        [existing issues](https://github.com/DialmasterOrg/Youtarr/issues) first to
+        avoid duplicates.
+  - type: textarea
+    id: description
+    attributes:
+      label: Describe the bug
+      description: A clear and concise description of what the bug is.
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Steps to reproduce
+      description: How can we reproduce the behavior?
+      placeholder: |
+        1. Go to '...'
+        2. Click on '...'
+        3. See error
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior
+      description: What did you expect to happen instead?
+    validations:
+      required: true
+  - type: textarea
+    id: logs
+    attributes:
+      label: Relevant logs
+      description: |
+        Paste any relevant log output. Set `LOG_LEVEL=debug` for more detail.
+        This will be automatically formatted into code, so no need for backticks.
+      render: shell
+  - type: input
+    id: version
+    attributes:
+      label: Youtarr version
+      description: Which Youtarr version are you running? (Settings page or image tag)
+      placeholder: "v1.70.0"
+    validations:
+      required: true
+  - type: dropdown
+    id: deployment
+    attributes:
+      label: Deployment environment
+      options:
+        - Docker Compose (default)
+        - Unraid
+        - Synology
+        - External database
+        - Other
+    validations:
+      required: true
+  - type: input
+    id: environment
+    attributes:
+      label: Host OS and Docker version
+      placeholder: "Ubuntu 24.04, Docker 27.0"
+    validations:
+      required: true

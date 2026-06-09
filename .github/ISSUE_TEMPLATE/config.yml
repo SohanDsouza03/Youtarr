@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Questions and Discussion
+    url: https://discord.gg/68rvWnYMtD
+    about: Join the Discord community for setup help and general questions.
+  - name: Documentation
+    url: https://github.com/DialmasterOrg/Youtarr/tree/main/docs
+    about: Check the docs for installation, configuration, and troubleshooting.
