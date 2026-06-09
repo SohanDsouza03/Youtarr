@@ -52,6 +52,13 @@ yarn-error.log*
 docker-compose.override.*
 .vscode/*
 
+# Editor and OS artifacts
+.idea/
+*.swp
+*.swo
+*~
+Thumbs.db
+
 # Default video download directory and README, all other files excluded
 downloads/*
 !downloads/README.md
